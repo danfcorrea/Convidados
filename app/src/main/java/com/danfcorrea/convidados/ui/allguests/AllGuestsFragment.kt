@@ -20,14 +20,14 @@ class AllGuestsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val allGuestsModel =
-            ViewModelProvider(this).get(AllGuestsModel::class.java)
+        val allGuestsViewModel =
+            ViewModelProvider(this).get(AllGuestsViewModel::class.java)
 
         _binding = FragmentAllGuestsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textHome
-        allGuestsModel.text.observe(viewLifecycleOwner) {
+        allGuestsViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root
