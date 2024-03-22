@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.danfcorrea.convidados.databinding.FragmentAllGuestsBinding
+import com.danfcorrea.convidados.ui.listener.OnGuestListener
 
 class AllGuestsFragment : Fragment() {
 
@@ -28,7 +29,17 @@ class AllGuestsFragment : Fragment() {
         binding.recyclerAllGuests.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL,false)
         binding.recyclerAllGuests.adapter = adapter
 
-        allGuestsViewModel.getAll()
+        val listener = object : OnGuestListener{
+            override fun onClick(id: Int) {
+
+            }
+            override fun onDelete(id: Int) {
+                allGuestsViewModel.delete(id)
+                allGuestsViewModel.getAll()
+            }
+        }
+
+        adapter.attachListener(listener)
         observe()
 
         return binding.root
@@ -37,6 +48,11 @@ class AllGuestsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onResume() {
+        allGuestsViewModel.getAll()
+        super.onResume()
     }
 
     private fun observe() {
