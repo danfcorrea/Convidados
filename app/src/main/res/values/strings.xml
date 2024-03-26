@@ -14,4 +14,10 @@
     <string name="present">Presente</string>
     <string name="absent">Ausente</string>
     <string name="save">Salvar</string>
+    <string name="default_error">Erro</string>
+    <string name="insert_success">Convidado adicionado com sucesso!</string>
+    <string name="update_success">Convidado alterado com sucesso!</string>
+    <string name="insert_failure">Erro! Convidado não adicionado</string>
+    <string name="update_failure">Erro! Convidado não alterado</string>
+    <string name="fields_error">Preencha os campos corretamente</string>
 </resources>

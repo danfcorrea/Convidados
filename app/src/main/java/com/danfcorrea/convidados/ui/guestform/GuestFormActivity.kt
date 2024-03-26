@@ -3,7 +3,7 @@ package com.danfcorrea.convidados.ui.guestform
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.Observer
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.danfcorrea.convidados.R
 import com.danfcorrea.convidados.constants.DataBaseConstants
@@ -18,17 +18,15 @@ class GuestFormActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityGuestFormBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(this)[GuestFormViewModel::class.java]
-
+        binding.radioPresent.isChecked = true
         binding.buttonSave.setOnClickListener(this)
 
         observe()
         loadData()
-
     }
 
     override fun onClick(v: View) {
@@ -37,19 +35,25 @@ class GuestFormActivity : AppCompatActivity(), View.OnClickListener {
             val presence = binding.radioPresent.isChecked
 
             viewModel.save(GuestModel(guestid, name, presence))
-            finish()
         }
     }
 
     private fun observe() {
-        viewModel.guest.observe(this, Observer {
+        viewModel.guest.observe(this) {
             binding.editName.setText(it.name)
             if (it.presence) {
                 binding.radioPresent.isChecked = true
             } else {
                 binding.radioAbsent.isChecked = true
             }
-        })
+        }
+        viewModel.saveGuest.observe(this) {
+            if (it.success) {
+                finish()
+            }
+            Toast.makeText(applicationContext, it.message, Toast.LENGTH_SHORT).show()
+        }
+
     }
 
     private fun loadData() {
