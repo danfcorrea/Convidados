@@ -1,4 +1,4 @@
-package com.danfcorrea.convidados.ui.guestform
+package com.danfcorrea.convidados.ui.viewholder
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,6 +9,7 @@ import com.danfcorrea.convidados.R
 import com.danfcorrea.convidados.constants.DataBaseConstants
 import com.danfcorrea.convidados.databinding.ActivityGuestFormBinding
 import com.danfcorrea.convidados.model.GuestModel
+import com.danfcorrea.convidados.ui.viewmodel.GuestFormViewModel
 
 class GuestFormActivity : AppCompatActivity(), View.OnClickListener {
 

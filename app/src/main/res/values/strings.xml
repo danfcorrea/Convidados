@@ -20,4 +20,7 @@
     <string name="insert_failure">Erro! Convidado não adicionado</string>
     <string name="update_failure">Erro! Convidado não alterado</string>
     <string name="fields_error">Preencha os campos corretamente</string>
+    <string name="delete_confirmation">Deseja remover o convidado?</string>
+    <string name="yes">sim</string>
+    <string name="no">não</string>
 </resources>

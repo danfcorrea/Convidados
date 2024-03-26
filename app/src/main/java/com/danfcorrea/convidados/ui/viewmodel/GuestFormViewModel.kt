@@ -1,4 +1,4 @@
-package com.danfcorrea.convidados.ui.guestform
+package com.danfcorrea.convidados.ui.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

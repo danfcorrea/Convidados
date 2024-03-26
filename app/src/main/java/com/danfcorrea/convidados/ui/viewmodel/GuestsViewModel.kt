@@ -1,24 +1,27 @@
-package com.danfcorrea.convidados.ui.allguests
+package com.danfcorrea.convidados.ui.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.danfcorrea.convidados.model.GuestModel
 import com.danfcorrea.convidados.repository.GuestRepository
 
-class AllGuestsViewModel(application: Application) : AndroidViewModel(application) {
+class GuestsViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository = GuestRepository.getInstance(application)
 
-    private val _listAllGuests = MutableLiveData<List<GuestModel>>().apply {
+    private val _listGuests = MutableLiveData<List<GuestModel>>().apply {
     }
 
-    val allGuests: LiveData<List<GuestModel>> = _listAllGuests
+    val guests: LiveData<List<GuestModel>> = _listGuests
 
     fun getAll() {
-        _listAllGuests.value = repository.getAll()
+        _listGuests.value = repository.getAll()
+    }
+
+    fun get(present: Int){
+        _listGuests.value = repository.getFilter(present)
     }
 
     fun delete(id: Int) {
