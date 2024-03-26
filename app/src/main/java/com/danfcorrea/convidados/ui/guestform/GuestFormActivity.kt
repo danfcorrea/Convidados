@@ -53,7 +53,6 @@ class GuestFormActivity : AppCompatActivity(), View.OnClickListener {
             }
             Toast.makeText(applicationContext, it.message, Toast.LENGTH_SHORT).show()
         }
-
     }
 
     private fun loadData() {

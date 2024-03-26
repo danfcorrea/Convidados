@@ -1,10 +1,10 @@
 package com.danfcorrea.convidados.ui.allguests
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
+import com.danfcorrea.convidados.R
 import com.danfcorrea.convidados.databinding.GuestItemBinding
 import com.danfcorrea.convidados.model.GuestModel
 import com.danfcorrea.convidados.ui.listener.OnGuestListener
@@ -44,11 +44,11 @@ class GuestsAdapter: RecyclerView.Adapter<GuestsAdapter.GuestsViewHolder>() {
             }
             bind.textName.setOnLongClickListener {
                 AlertDialog.Builder(itemView.context)
-                    .setMessage("Deseja remover o convidado?")
-                    .setPositiveButton("Sim") { dialog, which ->
+                    .setMessage(itemView.context.getString(R.string.delete_confirmation))
+                    .setPositiveButton(itemView.context.getString(R.string.yes)) { dialog, which ->
                         listener.onDelete(guest.id)
                     }
-                    .setNegativeButton("Não", null)
+                    .setNegativeButton(itemView.context.getString(R.string.no), null)
                     .create().show()
 
                 true
