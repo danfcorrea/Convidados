@@ -102,13 +102,13 @@ class GuestRepository private constructor(context: Context) {
             }
             cursor.close()
 
-        } catch (_: Exception){
+        } catch (_: Exception) {
             return list
         }
         return list
     }
 
-    fun get(present: Int): List<GuestModel>{
+    fun getFilter(present: Int): List<GuestModel> {
         val list = mutableListOf<GuestModel>()
         try {
             val db = guestDataBase.readableDatabase
@@ -144,10 +144,51 @@ class GuestRepository private constructor(context: Context) {
             }
             cursor.close()
 
-        } catch (_: Exception){
+        } catch (_: Exception) {
             return list
         }
         return list
+    }
+
+    fun get(id: Int): GuestModel? {
+        var guest: GuestModel? = null
+        try {
+            val db = guestDataBase.readableDatabase
+            val projection = arrayOf(
+                DataBaseConstants.GUEST.COLUMNS.ID,
+                DataBaseConstants.GUEST.COLUMNS.NAME,
+                DataBaseConstants.GUEST.COLUMNS.PRESENCE
+            )
+
+            val selection = DataBaseConstants.GUEST.COLUMNS.ID + " = ?"
+            val args = arrayOf(id.toString())
+
+            val cursor = db.query(
+                DataBaseConstants.GUEST.TABLE_NAME,
+                projection,
+                selection,
+                args,
+                null,
+                null,
+                null
+            )
+            if (cursor != null) {
+                while (cursor.moveToNext()) {
+                    val name =
+                        cursor.getString(cursor.run { getColumnIndex(DataBaseConstants.GUEST.COLUMNS.NAME) })
+                    val presence =
+                        cursor.getInt(cursor.run { getColumnIndex(DataBaseConstants.GUEST.COLUMNS.PRESENCE) })
+
+                    guest = GuestModel(id, name, presence == 1)
+                }
+            }
+            cursor.close()
+
+        } catch (_: Exception) {
+            return guest
+        }
+        return guest
+
     }
 
 }

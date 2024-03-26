@@ -1,6 +1,5 @@
 package com.danfcorrea.convidados.ui.allguests
 
-import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,8 +42,7 @@ class GuestsAdapter: RecyclerView.Adapter<GuestsAdapter.GuestsViewHolder>() {
             bind.textName.setOnClickListener{
                 listener.onClick(guest.id)
             }
-            bind.textName.setOnLongClickListener(View.OnLongClickListener {
-
+            bind.textName.setOnLongClickListener {
                 AlertDialog.Builder(itemView.context)
                     .setMessage("Deseja remover o convidado?")
                     .setPositiveButton("Sim") { dialog, which ->
@@ -54,7 +52,7 @@ class GuestsAdapter: RecyclerView.Adapter<GuestsAdapter.GuestsViewHolder>() {
                     .create().show()
 
                 true
-            })
+            }
         }
     }
 }
