@@ -39,10 +39,11 @@ class GuestsAdapter: RecyclerView.Adapter<GuestsAdapter.GuestsViewHolder>() {
     inner class GuestsViewHolder internal constructor(private val bind: GuestItemBinding, private val listener: OnGuestListener) : RecyclerView.ViewHolder(bind.root){
         fun bind(guest: GuestModel) {
             bind.textName.text = guest.name
-            bind.textName.setOnClickListener{
+            bind.imageEdit.setOnClickListener{
                 listener.onClick(guest.id)
             }
-            bind.textName.setOnLongClickListener {
+
+            bind.imageDelete.setOnClickListener {
                 AlertDialog.Builder(itemView.context)
                     .setMessage(itemView.context.getString(R.string.delete_confirmation))
                     .setPositiveButton(itemView.context.getString(R.string.yes)) { dialog, which ->
@@ -50,8 +51,6 @@ class GuestsAdapter: RecyclerView.Adapter<GuestsAdapter.GuestsViewHolder>() {
                     }
                     .setNegativeButton(itemView.context.getString(R.string.no), null)
                     .create().show()
-
-                true
             }
         }
     }

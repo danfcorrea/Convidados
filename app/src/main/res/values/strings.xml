@@ -23,4 +23,6 @@
     <string name="delete_confirmation">Deseja remover o convidado?</string>
     <string name="yes">sim</string>
     <string name="no">não</string>
+    <string name="edit_button">edit button</string>
+    <string name="delete_button">delete button</string>
 </resources>
