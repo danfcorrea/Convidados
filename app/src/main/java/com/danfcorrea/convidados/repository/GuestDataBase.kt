@@ -10,6 +10,7 @@ import com.danfcorrea.convidados.model.GuestModel
 
 @Database(entities = [GuestModel::class], version = 1)
 abstract class GuestDataBase : RoomDatabase() {
+    abstract fun guestDAO(): GuestDAO
     companion object {
         private lateinit var INSTANCE: GuestDataBase
         fun getDataBase(context: Context): GuestDataBase {
