@@ -11,7 +11,7 @@ import com.danfcorrea.convidados.repository.GuestRepository
 
 class GuestFormViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repository = GuestRepository.getInstance(application)
+    private val repository = GuestRepository(application.applicationContext)
 
     private val _guestModel = MutableLiveData<GuestModel>()
     val guest: LiveData<GuestModel> = _guestModel
