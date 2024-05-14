@@ -15,7 +15,7 @@ import com.danfcorrea.convidados.ui.adapter.GuestsAdapter
 import com.danfcorrea.convidados.ui.listener.OnGuestListener
 import com.danfcorrea.convidados.ui.viewmodel.GuestsViewModel
 
-class AbsentsFragment : Fragment() {
+class  AbsentsFragment : Fragment() {
 
     private var _binding: FragmentAbsentsBinding? = null
 
